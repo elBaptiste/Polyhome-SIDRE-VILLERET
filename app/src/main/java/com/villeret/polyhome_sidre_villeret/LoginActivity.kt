@@ -27,7 +27,7 @@ class LoginActivity : AppCompatActivity() {
     }
     fun loginSucces(responseCode: Int, response: LoginToken?) {
         if (responseCode == 200 && response?.token != null) {
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, HouseActivity::class.java)
             intent.putExtra("token", response.token)
             startActivity(intent)
 
