@@ -18,7 +18,7 @@
             android:name=".Register"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".HouseActivity"
             android:exported="false">
         </activity>
         <activity
