@@ -11,25 +11,36 @@ class HouseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_house)
-        val token = intent.getStringExtra("token")
 
+        val token = intent.getStringExtra("token")
         if (token != null) {
-            fetchHouseId(token)}
+            fetchHouseId(token)
+        }
     }
 
     private fun fetchHouseId(token: String) {
-        Log.d("POLYHOME_DEBUG", "Appel de l'API pour récupérer la maison...")
-        api.get<List<HouseResponse>>("https://polyhome.lesmoulinsdudev.com/api/houses", { code, houses ->
-            if (code == 200 && houses != null) {
-                if (houses.isNotEmpty()) {
-                    val houseId = houses[0].houseId
-                    Log.d("ID_HOUSE", "House id =  : $houseId")
-                    //dans logcat mettre le filtre ID_HOUSE
-                } else {
-                    Log.w("POLYHOME_DEBUG", "Liste de maisons vide pour cet utilisateur.")
-                }
+        val url = "https://polyhome.lesmoulinsdudev.com/api/houses"
+
+        api.get<List<HouseResponse>>(url, { code, houses ->
+            if (code == 200 && houses != null && houses.isNotEmpty()) {
+                val houseId = houses[0].houseId.toString()
+                Log.d("POLYHOME_ID", "ID maison : $houseId")
+                loadDevices(token, houseId)
             } else {
-                Log.e("POLYHOME_DEBUG", "Erreur API : Code de réponse $code")
+                Log.e("POLYHOME_ID", "Erreur lors de la récupération de l'ID")
+            }
+        }, token)
+    }
+
+    private fun loadDevices(token: String, houseId: String) {
+        val url = "https://polyhome.lesmoulinsdudev.com/api/houses/$houseId/devices"
+
+        api.get<DevicesContainer>(url, { code, container ->
+            if (code == 200 && container != null) {
+                Log.d("POLYHOME_DEVICE", "Connexion réussie à la maison $houseId")
+                for (device in container.devices) {
+                    Log.d("POLYHOME_DEVICE", "Appareil présent dans la maison : ${device.id}")
+                }
             }
         }, token)
     }
