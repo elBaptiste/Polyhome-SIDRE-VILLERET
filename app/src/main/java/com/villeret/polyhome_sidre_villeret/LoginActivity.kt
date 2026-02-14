@@ -38,7 +38,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
     public fun registerNewAccount(view: View) {
-        val intent = Intent(this, Register::class.java)
+        val intent = Intent(this, RegisterActivity::class.java)
         startActivity(intent)
     }
 }
