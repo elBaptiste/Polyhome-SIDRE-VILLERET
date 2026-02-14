@@ -23,9 +23,9 @@ class LoginActivity : AppCompatActivity() {
         val password = findViewById<EditText>(R.id.txtPassword).text.toString()
         val data = LoginData(email, password)
 
-        Api().post("https://polyhome.lesmoulinsdudev.com/api/users/auth", data, ::loginSucces)
+        Api().post("https://polyhome.lesmoulinsdudev.com/api/users/auth", data, ::loginSuccess)
     }
-    fun loginSucces(responseCode: Int, response: LoginToken?) {
+    fun loginSuccess(responseCode: Int, response: LoginToken?) {
         if (responseCode == 200 && response?.token != null) {
             val intent = Intent(this, HouseActivity::class.java)
             intent.putExtra("token", response.token)
