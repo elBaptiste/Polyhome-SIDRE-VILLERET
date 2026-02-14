@@ -2,11 +2,14 @@ package com.villeret.polyhome_sidre_villeret
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 
 class HouseActivity : AppCompatActivity() {
 
     private val api = Api()
+    private val housesArray = ArrayList<String>()
+    private lateinit var houseAdapter: HouseAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -14,34 +17,39 @@ class HouseActivity : AppCompatActivity() {
 
         val token = intent.getStringExtra("token")
         if (token != null) {
-            fetchHouseId(token)
+            fetchHouses(token)
         }
+
     }
 
-    private fun fetchHouseId(token: String) {
+    private fun fetchHouses(token: String) {
         val url = "https://polyhome.lesmoulinsdudev.com/api/houses"
 
         api.get<List<HouseResponse>>(url, { code, houses ->
             if (code == 200 && houses != null && houses.isNotEmpty()) {
+                for (element in houses) {
+                    housesArray.add(element.houseId.toString())
+                }
+                Log.d("POLYHOME_HOUSE_LIST_ID", "Houses List ID : $housesArray")
+                houseAdapter = HouseAdapter(this, housesArray)
+
+
                 val houseId = houses[0].houseId.toString()
                 Log.d("POLYHOME_ID", "ID maison : $houseId")
-                loadDevices(token, houseId)
+
+                initializeHouseList()
+
             } else {
                 Log.e("POLYHOME_ID", "Erreur lors de la récupération de l'ID")
             }
         }, token)
     }
 
-    private fun loadDevices(token: String, houseId: String) {
-        val url = "https://polyhome.lesmoulinsdudev.com/api/houses/$houseId/devices"
+    private fun initializeHouseList() {
+        val listView = findViewById<ListView>(R.id.houseListViewHouseActivity)
+        Log.d("POLYHOME_HOUSE_ADAPTER", "House Adapter list  : test")
+        Log.d("POLYHOME_HOUSE_ADAPTER", "House Adapter list  : $houseAdapter")
+        listView.adapter = houseAdapter
 
-        api.get<DevicesContainer>(url, { code, container ->
-            if (code == 200 && container != null) {
-                Log.d("POLYHOME_DEVICE", "Connexion réussie à la maison $houseId")
-                for (device in container.devices) {
-                    Log.d("POLYHOME_DEVICE", "Appareil présent dans la maison : ${device.id}")
-                }
-            }
-        }, token)
     }
 }

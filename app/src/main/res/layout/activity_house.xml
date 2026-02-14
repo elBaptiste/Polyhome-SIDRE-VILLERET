@@ -7,13 +7,22 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <ListView
+        android:id="@+id/houseListViewHouseActivity"
+        android:layout_width="409dp"
+        android:layout_height="600dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/textHouseConnexionHouseActivity"
+        tools:layout_editor_absoluteX="1dp" />
+
     <TextView
+        android:id="@+id/textHouseConnexionHouseActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="20dp"
+        android:text="Liste des maisons où vous pouvez vous connecter :"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
