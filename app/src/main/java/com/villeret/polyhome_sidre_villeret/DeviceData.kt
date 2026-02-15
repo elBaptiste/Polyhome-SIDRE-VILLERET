@@ -1,6 +1,6 @@
 package com.villeret.polyhome_sidre_villeret
 
-data class Device(
+data class DeviceData(
     val id: String,
     val type: String,
     val availableCommands: List<String>,
@@ -9,5 +9,5 @@ data class Device(
 )
 
 data class DevicesContainer(
-    val devices: List<Device>
+    val devices: List<DeviceData>
 )
