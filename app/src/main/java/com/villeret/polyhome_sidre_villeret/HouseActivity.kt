@@ -31,12 +31,11 @@ class HouseActivity : AppCompatActivity() {
                     housesArray.add(element.houseId.toString())
                 }
                 Log.d("POLYHOME_HOUSE_LIST_ID", "Houses List ID : $housesArray")
-                houseAdapter = HouseAdapter(this, housesArray)
+                houseAdapter = HouseAdapter(this, housesArray, token)
 
 
                 val houseId = houses[0].houseId.toString()
                 Log.d("POLYHOME_ID", "ID maison : $houseId")
-
                 initializeHouseList()
 
             } else {
