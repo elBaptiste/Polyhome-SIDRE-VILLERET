@@ -15,12 +15,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PolyhomeSIDREVILLERET">
         <activity
+            android:name=".DeviceActivity"
+            android:exported="false" />
+        <activity
             android:name=".RegisterActivity"
             android:exported="false" />
         <activity
             android:name=".HouseActivity"
-            android:exported="false">
-        </activity>
+            android:exported="false"></activity>
         <activity
             android:name=".LoginActivity"
             android:exported="true">
