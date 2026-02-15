@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class Register : AppCompatActivity() {
+class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -25,9 +25,14 @@ class Register : AppCompatActivity() {
     }
 
     private fun initButtonEvent() {
-        val button = findViewById<Button>(R.id.registerButton)
-        button.setOnClickListener {
+        val registerButton = findViewById<Button>(R.id.registerButton)
+        val connexionButton = findViewById<Button>(R.id.connexionRegisterButton)
+        registerButton.setOnClickListener {
             register()
+        }
+
+        connexionButton.setOnClickListener {
+            goToLogin()
         }
 
     }
@@ -52,7 +57,7 @@ class Register : AppCompatActivity() {
         }
 
         else {
-            val message = findViewById<TextView>(R.id.textView)
+            val message = findViewById<TextView>(R.id.InscriptionRegisterText)
             message.text = "ERREUR DE CONNEXION"
         }
     }

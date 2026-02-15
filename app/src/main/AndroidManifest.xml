@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PolyhomeSIDREVILLERET">
         <activity
-            android:name=".Register"
+            android:name=".RegisterActivity"
             android:exported="false" />
         <activity
             android:name=".HouseActivity"
