@@ -20,9 +20,15 @@ class DeviceAdapter(private val context: Context, private val devicesList: Devic
     override fun getItem(position: Int): Any = devicesList.devices[position]
     override fun getItemId(position: Int): Long = position.toLong()
 
+
+    @SuppressLint("SetTextI18n")
     ///permet la création de la liste des appareils avec une gestion des boutons d'action (2 ou 3 selon le type d'appareil)
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+    override fun getView(
+        position: Int,
+        convertView: View?,
+        parent: ViewGroup?
+    ): View? {
+        val inflater = context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val rowView = convertView ?: inflater.inflate(R.layout.device_list_item, parent, false)
 
         val targetedDevice = devicesList.devices[position]
@@ -30,7 +36,7 @@ class DeviceAdapter(private val context: Context, private val devicesList: Devic
         val idTxt = rowView.findViewById<TextView>(R.id.idDeviceListItem)
         val typeTxt = rowView.findViewById<TextView>(R.id.typeDeviceListItem)
         val container = rowView.findViewById<LinearLayout>(R.id.layoutButtonsContainer)
-        ///recuperation id et type
+        /// Recuperation id et type
         idTxt.text = "ID: ${targetedDevice.id}"
         typeTxt.text = "Type: ${targetedDevice.type}"
 
