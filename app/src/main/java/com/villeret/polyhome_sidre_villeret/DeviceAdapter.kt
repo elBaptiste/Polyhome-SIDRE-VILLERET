@@ -13,8 +13,8 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 
-class DeviceAdapter(private val context: Context, private val devicesList: DevicesContainer) : BaseAdapter() {
-
+class DeviceAdapter(private val context: Context, private val devicesList: DevicesContainer, private val token: String, private val houseId: String) : BaseAdapter() {
+    private val api = Api()
     override fun getCount(): Int = devicesList.devices.size
     override fun getItem(position: Int): Any = devicesList.devices[position]
     override fun getItemId(position: Int): Long = position.toLong()
@@ -49,7 +49,7 @@ class DeviceAdapter(private val context: Context, private val devicesList: Devic
 
             btn.setOnClickListener {
                 Log.d("POLYHOME_ACTION", "Envoi de $command pour l'appareil ${targetedDevice.id}")
-                // Ici tu pourras appeler ta fonction pour envoyer la requête API
+                sendCommand(targetedDevice.id, command, token, houseId)
             }
 
             // On ajoute le bouton au conteneur
@@ -57,5 +57,14 @@ class DeviceAdapter(private val context: Context, private val devicesList: Devic
         }
 
         return rowView
+    }
+    private fun sendCommand(deviceId: String, commandName: String, token: String, houseId: String) {
+        api.post<CommandData>("https://polyhome.lesmoulinsdudev.com/api/houses/$houseId/devices/$deviceId/command", CommandData(commandName), { code ->
+            if (code == 200) {
+                Log.d("POLYHOME_COMMAND", "Succès : Commande $commandName envoyée à $deviceId")
+            } else {
+                Log.e("POLYHOME_COMMAND", "Erreur $code : Vérifiez si la maison est ouverte dans le navigateur")
+            }
+        }, token)
     }
 }
