@@ -19,7 +19,6 @@ class HouseActivity : AppCompatActivity() {
         if (token != null) {
             fetchHouses(token)
         }
-
     }
 
     private fun fetchHouses(token: String) {
@@ -30,13 +29,15 @@ class HouseActivity : AppCompatActivity() {
                 for (element in houses) {
                     housesArray.add(element.houseId.toString())
                 }
-                Log.d("POLYHOME_HOUSE_LIST_ID", "Houses List ID : $housesArray")
-                houseAdapter = HouseAdapter(this, housesArray, token)
+                Log.d("POLYHOME_ID", "Houses List ID : $housesArray")
 
-
-                val houseId = houses[0].houseId.toString()
-                Log.d("POLYHOME_ID", "ID maison : $houseId")
-                initializeHouseList()
+                // Passer sur le thread principal pour l'affichage de la liste
+                runOnUiThread {
+                    houseAdapter = HouseAdapter(this@HouseActivity, housesArray, token)
+                    val houseId = houses[0].houseId.toString()
+                    Log.d("POLYHOME_ID", "ID maison : $houseId")
+                    initializeHouseList()
+                }
 
             } else {
                 Log.e("POLYHOME_ID", "Erreur lors de la récupération de l'ID")
@@ -46,9 +47,7 @@ class HouseActivity : AppCompatActivity() {
 
     private fun initializeHouseList() {
         val listView = findViewById<ListView>(R.id.houseListViewHouseActivity)
-        Log.d("POLYHOME_HOUSE_ADAPTER", "House Adapter list  : test")
         Log.d("POLYHOME_HOUSE_ADAPTER", "House Adapter list  : $houseAdapter")
         listView.adapter = houseAdapter
-
     }
 }

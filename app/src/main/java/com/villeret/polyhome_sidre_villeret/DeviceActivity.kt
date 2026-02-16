@@ -42,7 +42,7 @@ class DeviceActivity : AppCompatActivity() {
                     Log.d("POLYHOME_DEVICE", "Appareil présent dans la maison : ${device.id}")
                 }
                 runOnUiThread {
-                    deviceAdapter = DeviceAdapter(this, container)
+                    deviceAdapter = DeviceAdapter(this@DeviceActivity, container)
                     Log.d("POLYHOME_DEVICES", "device Adapter : ${deviceAdapter}")
                     initializeDeviceList()
                 }
