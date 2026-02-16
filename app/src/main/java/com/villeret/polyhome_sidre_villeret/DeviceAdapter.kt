@@ -59,6 +59,7 @@ class DeviceAdapter(private val context: Context, private val devicesList: Devic
                 Log.d("POLYHOME_ACTION", "Envoi de $command pour l'appareil ${targetedDevice.id}")
                 sendCommand(targetedDevice.id, command, token, houseId)
             }
+
             // On ajoute le bouton au conteneur
             container.addView(btn)
         }
