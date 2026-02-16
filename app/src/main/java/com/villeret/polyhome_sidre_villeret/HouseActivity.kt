@@ -20,7 +20,7 @@ class HouseActivity : AppCompatActivity() {
             fetchHouses(token)
         }
     }
-
+    ///recuperation des maisons de l'utilisateur et ajout dans un tableau
     private fun fetchHouses(token: String) {
         val url = "https://polyhome.lesmoulinsdudev.com/api/houses"
 
