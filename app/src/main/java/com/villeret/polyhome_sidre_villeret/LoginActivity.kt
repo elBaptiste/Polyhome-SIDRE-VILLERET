@@ -23,9 +23,10 @@ class LoginActivity : AppCompatActivity() {
         val password = findViewById<EditText>(R.id.txtPassword).text.toString()
         val data = LoginData(email, password)
 
-        Api().post("https://polyhome.lesmoulinsdudev.com/api/users/auth", data, ::loginSucces)
+        Api().post("https://polyhome.lesmoulinsdudev.com/api/users/auth", data, ::loginSuccess)
     }
-    fun loginSucces(responseCode: Int, response: LoginToken?) {
+    ///redirection vers la page des maisons de l'utilisateur après la connexion
+    fun loginSuccess(responseCode: Int, response: LoginToken?) {
         if (responseCode == 200 && response?.token != null) {
             val intent = Intent(this, HouseActivity::class.java)
             intent.putExtra("token", response.token)
@@ -37,6 +38,7 @@ class LoginActivity : AppCompatActivity() {
             println("ca marche pas : code = $responseCode, token est null")
         }
     }
+    ///redirection vers la page de création de compte
     public fun registerNewAccount(view: View) {
         val intent = Intent(this, RegisterActivity::class.java)
         startActivity(intent)
