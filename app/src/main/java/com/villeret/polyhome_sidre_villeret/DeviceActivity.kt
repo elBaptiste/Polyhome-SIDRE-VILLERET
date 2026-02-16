@@ -1,7 +1,9 @@
 package com.villeret.polyhome_sidre_villeret
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.ListView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -30,6 +32,7 @@ class DeviceActivity : AppCompatActivity() {
         if (token != null) {
             loadDevices(token, id)
         }
+        initAccessUsersButton(token.toString(), id)
     }
 
     private fun loadDevices(token: String, houseId: String) {
@@ -59,4 +62,16 @@ class DeviceActivity : AppCompatActivity() {
         listView.adapter = deviceAdapter
 
     }
+
+    private fun initAccessUsersButton(token: String, id: String){
+        val accessUsersButton = findViewById<Button>(R.id.accessUsersButtonDeviceActivity)
+
+        accessUsersButton.setOnClickListener {
+            val intentToGoToUsersActivity = Intent(this, UsersActivity::class.java)
+            intentToGoToUsersActivity.putExtra("token", token)
+            intentToGoToUsersActivity.putExtra("houseId", id)
+            startActivity(intentToGoToUsersActivity)
+        }
+    }
 }
+
