@@ -28,7 +28,7 @@ class DeviceAdapter(private val context: Context, private val devicesList: Devic
         convertView: View?,
         parent: ViewGroup?
     ): View? {
-        val inflater = context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val rowView = convertView ?: inflater.inflate(R.layout.device_list_item, parent, false)
 
         val targetedDevice = devicesList.devices[position]
@@ -41,7 +41,7 @@ class DeviceAdapter(private val context: Context, private val devicesList: Devic
         typeTxt.text = "Type: ${targetedDevice.type}"
 
         container.removeAllViews()
-        ///parametrage des boutons si il y en a 2 ou 3
+        /// Parametrage des boutons si il y en a 2 ou 3
         targetedDevice.availableCommands.forEach { command ->
             val btn = Button(context)
             val params = LinearLayout.LayoutParams(
