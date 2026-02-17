@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -10,12 +9,12 @@
     tools:context=".DeviceActivity">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardAccessUsers"
+        android:id="@+id/headerCard"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
         app:cardBackgroundColor="#80000000"
         app:cardCornerRadius="15dp"
         app:cardElevation="0dp"
@@ -25,14 +24,14 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:padding="8dp">
 
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="12dp"
                 android:text="Accéder à la liste des utilisateurs"
                 android:textColor="@android:color/white"
                 android:textSize="10sp"
@@ -44,8 +43,8 @@
 
             <Button
                 android:id="@+id/accessUsersButtonDeviceActivity"
-                android:layout_width="87dp"
-                android:layout_height="36dp"
+                android:layout_width="86dp"
+                android:layout_height="35dp"
                 android:backgroundTint="#4CAF50"
                 android:text="Accéder"
                 android:textAllCaps="false"
@@ -63,16 +62,28 @@
         android:id="@+id/deviceListViewDeviceActivity"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
         android:divider="@android:color/transparent"
-        android:dividerHeight="12dp"
+        android:dividerHeight="10dp"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         android:clipToPadding="false"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/backButtonDeviceActivity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardAccessUsers" />
+        app:layout_constraintTop_toBottomOf="@+id/headerCard" />
+
+    <Button
+        android:id="@+id/backButtonDeviceActivity"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Retour"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
