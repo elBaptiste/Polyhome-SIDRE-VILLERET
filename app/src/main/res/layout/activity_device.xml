@@ -9,26 +9,43 @@
 
     <ListView
         android:id="@+id/deviceListViewDeviceActivity"
-        android:layout_width="414dp"
-        android:layout_height="635dp"
-        android:layout_marginTop="15dp"
+        android:layout_width="413dp"
+        android:layout_height="584dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/backButtonDeviceActivity"
         app:layout_constraintTop_toBottomOf="@+id/accessUsersButtonDeviceActivity"
-        tools:layout_editor_absoluteX="-4dp" />
+        tools:layout_editor_absoluteX="-1dp" />
 
     <Button
         android:id="@+id/accessUsersButtonDeviceActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
         android:text="Acceder"
-        tools:layout_editor_absoluteX="275dp"
-        tools:layout_editor_absoluteY="23dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="52dp"
         android:text="Acceder à la liste des utilisateurs"
         app:layout_constraintEnd_toStartOf="@+id/accessUsersButtonDeviceActivity"
-        tools:layout_editor_absoluteY="37dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/backButtonDeviceActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="Retour"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
