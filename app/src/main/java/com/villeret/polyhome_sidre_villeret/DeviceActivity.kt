@@ -33,6 +33,7 @@ class DeviceActivity : AppCompatActivity() {
             loadDevices(token, id)
         }
         initAccessUsersButton(token.toString(), id)
+        initBackButton()
     }
 
     private fun loadDevices(token: String, houseId: String) {
@@ -72,6 +73,14 @@ class DeviceActivity : AppCompatActivity() {
             intentToGoToUsersActivity.putExtra("houseId", id)
             startActivity(intentToGoToUsersActivity)
         }
+    }
+
+    private fun initBackButton() {
+        val backButton = findViewById<Button>(R.id.backButtonDeviceActivity)
+        backButton.setOnClickListener {
+            finish()
+        }
+
     }
 }
 
