@@ -22,40 +22,109 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp">
+            android:orientation="vertical"
+            android:padding="12dp">
 
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="0dp"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="12dp"
-                android:text="Accéder à la liste des utilisateurs"
-                android:textColor="@android:color/white"
-                android:textSize="10sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/accessUsersButtonDeviceActivity"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <Button
-                android:id="@+id/accessUsersButtonDeviceActivity"
-                android:layout_width="86dp"
-                android:layout_height="35dp"
-                android:backgroundTint="#4CAF50"
-                android:text="Accéder"
-                android:textAllCaps="false"
-                android:textColor="@android:color/white"
-                android:textSize="10sp"
-                app:cornerRadius="10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:text="Gestion des utilisateurs"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/accessUsersButtonDeviceActivity"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/accessUsersButtonDeviceActivity"
+                    android:layout_width="86dp"
+                    android:layout_height="35dp"
+                    android:backgroundTint="#4CAF50"
+                    android:text="Accéder"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textSize="10sp"
+                    app:cornerRadius="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnOpenAllShutters"
+                    android:layout_width="0dp"
+                    android:layout_height="35dp"
+                    android:layout_marginEnd="2dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#546E7A"
+                    android:text="Ouvrir Volets"
+                    android:textAllCaps="false"
+                    android:textSize="10sp"
+                    app:cornerRadius="8dp" />
+
+                <Button
+                    android:id="@+id/btnCloseAllShutters"
+                    android:layout_width="0dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="2dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#546E7A"
+                    android:text="Fermer Volets"
+                    android:textAllCaps="false"
+                    android:textSize="10sp"
+                    app:cornerRadius="8dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnOnAllLights"
+                    android:layout_width="0dp"
+                    android:layout_height="35dp"
+                    android:layout_marginEnd="2dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#FBC02D"
+                    android:text="Allumer Tout"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/black"
+                    android:textSize="10sp"
+                    app:cornerRadius="8dp" />
+
+                <Button
+                    android:id="@+id/btnOffAllLights"
+                    android:layout_width="0dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="2dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#FBC02D"
+                    android:text="Éteindre Tout"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/black"
+                    android:textSize="10sp"
+                    app:cornerRadius="8dp" />
+            </LinearLayout>
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <ListView
