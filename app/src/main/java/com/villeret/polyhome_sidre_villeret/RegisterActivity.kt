@@ -24,6 +24,7 @@ class RegisterActivity : AppCompatActivity() {
         initButtonEvent()
     }
 
+    // Fonction d'initailisation des boutons de registerActivity
     private fun initButtonEvent() {
         val registerButton = findViewById<Button>(R.id.registerButton)
         val connexionButton = findViewById<Button>(R.id.connexionRegisterButton)
@@ -43,6 +44,7 @@ class RegisterActivity : AppCompatActivity() {
 
         val registerData = RegisterData(login.text.toString(), password.text.toString())
 
+        // Appel API pour inscrire un utilisateur
         Api().post<RegisterData>(
             "https://polyhome.lesmoulinsdudev.com/api/users/register",
             registerData,
@@ -55,7 +57,6 @@ class RegisterActivity : AppCompatActivity() {
         if (statusCode == 200) {
             goToLogin()
         }
-
         else {
             val message = findViewById<TextView>(R.id.InscriptionRegisterText)
             message.text = "ERREUR DE CONNEXION"

@@ -42,6 +42,9 @@ class HouseAdapter(private val context: Context, private val houses: ArrayList<S
         accessBtn.setOnClickListener { view ->
             Log.d("AccessButtonClick", "A ete clique")
 
+            // On récupère le context de la vue (ici ça sera HouseActivity) où le bouton est situé car on veut que ce bouton puisse ouvrir une activité
+            // On a besoin du context de la vue pour faire une intent
+            // On lance ensuite startActivity qui va nous permette de lancer la vue des appareils avec l'id de la maison et le token en paramètres
             val context = view.context
             val intent = Intent(context, DeviceActivity::class.java)
             intent.putExtra("id", houses[position])

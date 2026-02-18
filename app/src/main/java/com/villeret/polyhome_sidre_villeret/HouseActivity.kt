@@ -20,10 +20,11 @@ class HouseActivity : AppCompatActivity() {
             fetchHouses(token)
         }
     }
-    ///recuperation des maisons de l'utilisateur et ajout dans un tableau
+    // Recuperation des maisons de l'utilisateur et ajout dans un tableau
     private fun fetchHouses(token: String) {
         val url = "https://polyhome.lesmoulinsdudev.com/api/houses"
 
+        // Appel API pour récupérer la liste des maisons d'un utilisateur
         api.get<List<HouseResponse>>(url, { code, houses ->
             if (code == 200 && houses != null && houses.isNotEmpty()) {
                 for (element in houses) {
@@ -31,11 +32,11 @@ class HouseActivity : AppCompatActivity() {
                 }
                 Log.d("POLYHOME_ID", "Houses List ID : $housesArray")
 
-                // Passer sur le thread principal pour l'affichage de la liste
+                // On utilise runOnUiThread car cela permet de lancer initializeHouseList() sur le thread principal
+                // Sinon on a l'erreur Only the original thread that created a view hierarchy can touch its views
+                // Avec runOnUiThread on s'assure que ce soit le bon thread qui execute l'initialisation de la liste des maisons
                 runOnUiThread {
                     houseAdapter = HouseAdapter(this@HouseActivity, housesArray, token)
-                    val houseId = houses[0].houseId.toString()
-                    Log.d("POLYHOME_ID", "ID maison : $houseId")
                     initializeHouseList()
                 }
 
@@ -45,9 +46,12 @@ class HouseActivity : AppCompatActivity() {
         }, token)
     }
 
+    // Initialisation de la liste des maison d'un utilisateur
     private fun initializeHouseList() {
+        // Récupère la vue de la liste dans le layout
         val listView = findViewById<ListView>(R.id.houseListViewHouseActivity)
         Log.d("POLYHOME_HOUSE_ADAPTER", "House Adapter list  : $houseAdapter")
+        // Lie l'adapter à la ListView pour afficher les maisons
         listView.adapter = houseAdapter
     }
 }

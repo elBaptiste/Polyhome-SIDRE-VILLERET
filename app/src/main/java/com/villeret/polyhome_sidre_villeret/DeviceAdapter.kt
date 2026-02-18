@@ -15,14 +15,14 @@ import android.widget.TextView
 
 class DeviceAdapter(private val context: Context, private val devicesList: DevicesContainer, private val token: String, private val houseId: String) : BaseAdapter() {
     private val api = Api()
-    ///pas nécessaire ici mais obligatoire pour la compilation
+    // Pas nécessaire ici mais obligatoire pour la compilation
     override fun getCount(): Int = devicesList.devices.size
     override fun getItem(position: Int): Any = devicesList.devices[position]
     override fun getItemId(position: Int): Long = position.toLong()
 
 
     @SuppressLint("SetTextI18n")
-    ///permet la création de la liste des appareils avec une gestion des boutons d'action (2 ou 3 selon le type d'appareil)
+    // Permet la création de la liste des appareils avec une gestion des boutons d'action (2 ou 3 selon le type d'appareil)
     override fun getView(
         position: Int,
         convertView: View?,
@@ -36,12 +36,12 @@ class DeviceAdapter(private val context: Context, private val devicesList: Devic
         val idTxt = rowView.findViewById<TextView>(R.id.idDeviceListItem)
         val typeTxt = rowView.findViewById<TextView>(R.id.typeDeviceListItem)
         val container = rowView.findViewById<LinearLayout>(R.id.layoutButtonsContainer)
-        /// Recuperation id et type
+        // Recuperation id et type
         idTxt.text = "ID: ${targetedDevice.id}"
         typeTxt.text = "Type: ${targetedDevice.type}"
 
         container.removeAllViews()
-        /// Parametrage des boutons si il y en a 2 ou 3
+        // Parametrage des boutons si il y en a 2 ou 3
         targetedDevice.availableCommands.forEach { command ->
             val btn = Button(context)
             val params = LinearLayout.LayoutParams(

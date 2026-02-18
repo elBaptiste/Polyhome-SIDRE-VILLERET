@@ -46,8 +46,10 @@ class UsersAdapter(private val context: Context, private val users: ArrayList<Us
 
         Log.d("POLYHOME_USER", "owner ? ${users[position].owner}")
 
+        // Si la valeur du owner du User est 1 c'est le propriétaire sinon c'est une personne tiers auquel on a donné l'accès
         if (users[position].owner.toString() == "1") {
             ownerValue.text = "Propriétaire"
+            // Par sécurité pour éviter de supprimer le propriétaire d'une maison, on cache le bouton de l'activité
             removeBtn.visibility = View.GONE
         } else {
             ownerValue.text = "Personne tiers"
@@ -59,23 +61,31 @@ class UsersAdapter(private val context: Context, private val users: ArrayList<Us
             val url = "https://polyhome.lesmoulinsdudev.com/api/houses/${houseID}/users"
             val data = UserLogin(users[position].userLogin)
 
-            api.delete(
-                url, data,{code ->
-                    if (code == 200 && users[position].owner.toString() != "1") {
-                        users.removeAt(position)
-                        Log.d("REMOVE_USER", "ça va faire notifyDataSetChanged")
-                        (context as? Activity)?.runOnUiThread {
-                            Log.d("REMOVE_USER", "ça va faire notifyDataSetChanged")
-                            notifyDataSetChanged()
-                        }
-                    }
-                    else {
-                        Log.d("RemoveButtonClick", "$code")
-                    }
-                },
-                securityToken
-            )
+            // Deuxième sécurité pour éviter de supprimer un propriétaire
+            // Cette sécurité peut être superflu mais imaginons que le bouton supprimer soit toujours clickable, cela évite la suppression
+            if (users[position].owner.toString() != "1") {
+                // Appel API pour supprimer un utilisateur
+                api.delete(
+                    url, data,{code ->
+                        if (code == 200) {
+                            // On enlève l'utilisateur de notre liste d'utilisateur
+                            users.removeAt(position)
 
+                            // On force l'execution sur le thread principal
+                            // car notifyDataSetChanged() ne peut pas être appelé depuis un thread secondaire
+                            // hors comme un adapter n'est pas une activity, il ne connait pas runOnUiThread, il faut donc l'appliquer au context de ce dernier
+                            // mais comme le context n'est pas forcément une activité, on doit s'assurer que s'en est une pour le bon fonctionnement de runOnUiThread
+                            (context as? Activity)?.runOnUiThread {
+                                notifyDataSetChanged()
+                            }
+                        }
+                        else {
+                            Log.d("RemoveButtonClick", "$code")
+                        }
+                    },
+                    securityToken
+                )
+            }
         }
 
         return rowView
