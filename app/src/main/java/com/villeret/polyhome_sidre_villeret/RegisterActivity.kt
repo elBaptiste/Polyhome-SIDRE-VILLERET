@@ -41,11 +41,9 @@ class RegisterActivity : AppCompatActivity() {
         val login = findViewById<EditText>(R.id.editTextLogin).text.toString()
         val password = findViewById<EditText>(R.id.editTextPassword).text.toString()
         val registerData = RegisterData(login, password)
-        // On utilise ::registerSuccess pour gérer la réponse
         Api().post("https://polyhome.lesmoulinsdudev.com/api/users/register", registerData, ::successfulRegister)
     }
-
-
+    /// fonction de gestion de l'inscription
     fun successfulRegister(statutCode: Int) {
         if (statutCode == 200) {
             runOnUiThread {

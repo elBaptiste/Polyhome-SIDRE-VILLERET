@@ -28,6 +28,7 @@ class DeviceActivity : AppCompatActivity() {
     private var closeHour = 20
     private var closeMinute = 0
     /// gestion programmation automatique avec un handler pour la mise à jour de l'affichage
+    /// planifie une vérification récursive chaque minute sans bloquer le thread principal.
     private val handler = Handler(Looper.getMainLooper())
     /// variable vérification heure
     private lateinit var checkTimeRunnable: Runnable
@@ -55,6 +56,7 @@ class DeviceActivity : AppCompatActivity() {
         startAutoCheck(token, id)
     }
 
+    /// fonction chargement des horaires enregistrées dans les préférences
     private fun loadSchedules(houseId: String) {
         val sharedPref = getSharedPreferences("PolyhomePrefs", Context.MODE_PRIVATE)
         // chargement des horaires depuis les préférences
@@ -88,6 +90,8 @@ class DeviceActivity : AppCompatActivity() {
         val hCloseTxt = findViewById<TextView>(R.id.txtHourClose)
         val mCloseTxt = findViewById<TextView>(R.id.txtMinClose)
 
+        /// on fait en sorte que l'affichage et le choix de l'heure soit optimisé
+        /// gestion du passage de 59 a 0 et de 23 a 0
         findViewById<Button>(R.id.btnPlusHourOpen).setOnClickListener {
             openHour = (openHour + 1) % 24
             hOpenTxt.text = String.format("%02d", openHour)
@@ -133,10 +137,8 @@ class DeviceActivity : AppCompatActivity() {
     private fun startAutoCheck(token: String, houseId: String) {
         checkTimeRunnable = object : Runnable {
             override fun run() {
-                val cal = Calendar.getInstance()
-                val nowH = cal.get(Calendar.HOUR_OF_DAY)
-                val nowM = cal.get(Calendar.MINUTE)
-
+                val nowH = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
+                val nowM = Calendar.getInstance().get(Calendar.MINUTE)
                 if (nowH == openHour && nowM == openMinute) {
                     devicesList.filter { it.type == "rolling shutter" }.forEach {
                         sendCommandGlobal(it.id, "OPEN", token, houseId)
@@ -147,10 +149,10 @@ class DeviceActivity : AppCompatActivity() {
                         sendCommandGlobal(it.id, "CLOSE", token, houseId)
                     }
                 }
-                handler.postDelayed(this, 60000) // Vérification toutes les minutes
+                handler.postDelayed(this, 60000) /// vérification toutes les minutes
             }
         }
-        handler.post(checkTimeRunnable)
+        handler.post(checkTimeRunnable) /// lancement de la boucle
     }
     /// fonction recuperer tous les appareils
     private fun loadDevices(token: String, houseId: String) {

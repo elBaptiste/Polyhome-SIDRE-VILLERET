@@ -49,7 +49,7 @@ class DeviceAdapter(private val context: Context, private val devicesList: Devic
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 1.0f
             )
-            params.setMargins(8, 0, 8, 0) //marge entre les boutons
+            params.setMargins(8, 0, 8, 0) /// marge entre les boutons
             btn.layoutParams = params
             btn.text = command
             btn.textSize = 12f
@@ -66,6 +66,7 @@ class DeviceAdapter(private val context: Context, private val devicesList: Devic
 
         return rowView
     }
+    /// fonction de gestion des commandes
     private fun sendCommand(deviceId: String, commandName: String, token: String, houseId: String) {
         api.post<CommandData>("https://polyhome.lesmoulinsdudev.com/api/houses/$houseId/devices/$deviceId/command", CommandData(commandName), { code ->
             if (code == 200) {
