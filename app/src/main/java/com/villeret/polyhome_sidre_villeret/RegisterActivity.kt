@@ -5,6 +5,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast // Import ajouté
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -24,7 +25,6 @@ class RegisterActivity : AppCompatActivity() {
         initButtonEvent()
     }
 
-    // Fonction d'initailisation des boutons de registerActivity
     private fun initButtonEvent() {
         val registerButton = findViewById<Button>(R.id.registerButton)
         val connexionButton = findViewById<Button>(R.id.connexionRegisterButton)
@@ -35,31 +35,35 @@ class RegisterActivity : AppCompatActivity() {
         connexionButton.setOnClickListener {
             goToLogin()
         }
-
     }
 
     fun register() {
-        val login = findViewById<EditText>(R.id.editTextLogin)
-        val password = findViewById<EditText>(R.id.editTextPassword)
-
-        val registerData = RegisterData(login.text.toString(), password.text.toString())
-
-        // Appel API pour inscrire un utilisateur
-        Api().post<RegisterData>(
-            "https://polyhome.lesmoulinsdudev.com/api/users/register",
-            registerData,
-            onSuccess = { status -> successfulRegister(status) }
-        )
+        val login = findViewById<EditText>(R.id.editTextLogin).text.toString()
+        val password = findViewById<EditText>(R.id.editTextPassword).text.toString()
+        val registerData = RegisterData(login, password)
+        // On utilise ::registerSuccess pour gérer la réponse
+        Api().post("https://polyhome.lesmoulinsdudev.com/api/users/register", registerData, ::successfulRegister)
     }
 
-    fun successfulRegister(statusCode: Int) {
-        Log.d("Register", "$statusCode")
-        if (statusCode == 200) {
-            goToLogin()
-        }
-        else {
-            val message = findViewById<TextView>(R.id.InscriptionRegisterText)
-            message.text = "ERREUR DE CONNEXION"
+
+    fun successfulRegister(statutCode: Int) {
+        if (statutCode == 200) {
+            runOnUiThread {
+                Toast.makeText(this, "Le compte a bien été créé", Toast.LENGTH_LONG).show()
+                goToLogin()
+            }
+        } else {
+            runOnUiThread {
+                val message = when (statutCode) {
+                    400 -> "Les données fournies sont incorrectes"
+                    409 -> "Le login est déjà utilisé par un autre compte"
+                    500 -> "Une erreur s’est produite au niveau du serveur"
+                    else -> "Erreur inconnue (Code $statutCode)"
+                }
+
+                // affichage de l'erreur dans le Toast
+                Toast.makeText(this@RegisterActivity, message, Toast.LENGTH_LONG).show()
+            }
         }
     }
 

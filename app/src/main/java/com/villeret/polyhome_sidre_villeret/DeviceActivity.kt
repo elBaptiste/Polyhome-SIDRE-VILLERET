@@ -18,6 +18,7 @@ import java.util.Calendar
 class DeviceActivity : AppCompatActivity() {
 
     private val api = Api()
+    /// adapter pour la liste des appareils qui sera initialisé dans loadDevices
     private lateinit var deviceAdapter: DeviceAdapter
     private var devicesList: List<DeviceData> = listOf()
 

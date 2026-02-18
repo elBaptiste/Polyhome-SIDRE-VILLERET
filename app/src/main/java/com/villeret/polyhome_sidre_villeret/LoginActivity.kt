@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import android.widget.Toast
 
 class LoginActivity : AppCompatActivity() {
 
@@ -55,7 +56,16 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         } else {
-            println("Échec de connexion : code = $responseCode")
+            runOnUiThread {
+                val message = when (responseCode) {
+                    401 -> "Les données fournies sont incorrectes"
+                    404 -> "Aucun utilisateur ne correspond aux identifiants donnés"
+                    500 -> "Une erreur s’est produite au niveau du serveur"
+                    else -> "Erreur inconnue (Code $responseCode)"
+                }
+                // On affiche le message à l'utilisateur
+                Toast.makeText(this@LoginActivity, message, Toast.LENGTH_SHORT).show()
+            }
         }
     }
     public fun registerNewAccount(view: View) {
