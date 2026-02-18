@@ -77,6 +77,7 @@
                     android:layout_weight="1"
                     android:backgroundTint="#546E7A"
                     android:text="Ouvrir Volets"
+                    android:textColor="@color/white"
                     android:textAllCaps="false"
                     android:textSize="10sp"
                     app:cornerRadius="8dp" />
@@ -89,6 +90,7 @@
                     android:layout_weight="1"
                     android:backgroundTint="#546E7A"
                     android:text="Fermer Volets"
+                    android:textColor="@color/white"
                     android:textAllCaps="false"
                     android:textSize="10sp"
                     app:cornerRadius="8dp" />
@@ -208,8 +210,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-                    <Button android:id="@+id/btnPlusHourOpen" android:layout_width="35dp" android:layout_height="30dp" android:text="^" android:textSize="25sp" android:padding="0dp" android:background="@android:color/transparent" android:stateListAnimator="@null" />
-                    <Button android:id="@+id/btnMinusHourOpen" android:layout_width="35dp" android:layout_height="30dp" android:text="v" android:textSize="20sp" android:padding="0dp" android:background="@android:color/transparent" android:stateListAnimator="@null"  />
+                    <Button android:id="@+id/btnPlusHourOpen" android:layout_width="35dp" android:layout_height="30dp" android:text="^" android:textColor="@color/white" android:textSize="25sp" android:padding="0dp" android:background="@android:color/transparent" android:stateListAnimator="@null" />
+                    <Button android:id="@+id/btnMinusHourOpen" android:layout_width="35dp" android:layout_height="30dp" android:text="v" android:textColor="@color/white" android:textSize="20sp" android:padding="0dp" android:background="@android:color/transparent" android:stateListAnimator="@null"  />
                 </LinearLayout>
 
                 <TextView android:id="@+id/txtHourOpen" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="08" android:textColor="#FFF" android:textSize="16sp" android:layout_marginHorizontal="4dp" />
@@ -220,8 +222,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-                    <Button android:id="@+id/btnPlusMinOpen" android:layout_width="35dp" android:layout_height="30dp" android:text="^" android:textSize="25sp" android:padding="0dp" android:background="@android:color/transparent" android:stateListAnimator="@null"  />
-                    <Button android:id="@+id/btnMinusMinOpen" android:layout_width="35dp" android:layout_height="30dp" android:text="v" android:textSize="20sp" android:padding="0dp" android:background="@android:color/transparent" android:stateListAnimator="@null" />
+                    <Button android:id="@+id/btnPlusMinOpen" android:layout_width="35dp" android:layout_height="30dp" android:text="^" android:textColor="@color/white" android:textSize="25sp" android:padding="0dp" android:background="@android:color/transparent" android:stateListAnimator="@null"  />
+                    <Button android:id="@+id/btnMinusMinOpen" android:layout_width="35dp" android:layout_height="30dp" android:text="v" android:textColor="@color/white" android:textSize="20sp" android:padding="0dp" android:background="@android:color/transparent" android:stateListAnimator="@null" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -238,8 +240,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-                    <Button android:id="@+id/btnPlusHourClose" android:layout_width="35dp" android:layout_height="30dp" android:text="^" android:textSize="25sp" android:padding="0dp" android:background="@android:color/transparent" android:stateListAnimator="@null"  />
-                    <Button android:id="@+id/btnMinusHourClose" android:layout_width="35dp" android:layout_height="30dp" android:text="v" android:textSize="20sp" android:padding="0dp" android:background="@android:color/transparent" android:stateListAnimator="@null" />
+                    <Button android:id="@+id/btnPlusHourClose" android:layout_width="35dp" android:layout_height="30dp" android:text="^" android:textColor="@color/white" android:textSize="25sp" android:padding="0dp" android:background="@android:color/transparent" android:stateListAnimator="@null"  />
+                    <Button android:id="@+id/btnMinusHourClose" android:layout_width="35dp" android:layout_height="30dp" android:text="v" android:textColor="@color/white" android:textSize="20sp" android:padding="0dp" android:background="@android:color/transparent" android:stateListAnimator="@null" />
                 </LinearLayout>
 
                 <TextView android:id="@+id/txtHourClose" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="20" android:textColor="#FFF" android:textSize="16sp" android:layout_marginHorizontal="4dp" />
@@ -250,8 +252,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-                    <Button android:id="@+id/btnPlusMinClose" android:layout_width="35dp" android:layout_height="30dp" android:text="^" android:textSize="25sp" android:padding="0dp" android:background="@android:color/transparent" android:stateListAnimator="@null" />
-                    <Button android:id="@+id/btnMinusMinClose" android:layout_width="35dp" android:layout_height="30dp" android:text="v" android:textSize="20sp" android:padding="0dp" android:background="@android:color/transparent" android:stateListAnimator="@null" />
+                    <Button android:id="@+id/btnPlusMinClose" android:layout_width="35dp" android:layout_height="30dp" android:text="^" android:textColor="@color/white" android:textSize="25sp" android:padding="0dp" android:background="@android:color/transparent" android:stateListAnimator="@null" />
+                    <Button android:id="@+id/btnMinusMinClose" android:layout_width="35dp" android:layout_height="30dp" android:text="v" android:textColor="@color/white" android:textSize="20sp" android:padding="0dp" android:background="@android:color/transparent" android:stateListAnimator="@null" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

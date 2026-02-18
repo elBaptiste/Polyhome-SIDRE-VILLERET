@@ -69,6 +69,7 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="#4CAF50"
                     android:text="Ajouter"
+                    android:textColor="@color/white"
                     android:textAllCaps="false"
                     app:cornerRadius="10dp"
                     android:layout_marginEnd="20dp" />
