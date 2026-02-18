@@ -53,39 +53,75 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/newUserTextUsersActivity" />
 
-            <Button
-                android:id="@+id/addNewUserButtonUsersActivity"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:backgroundTint="#4CAF50"
-                android:text="Ajouter"
-                android:textAllCaps="false"
-                app:cornerRadius="10dp"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal"
+                android:gravity="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/newUserEditTextUsersActivity" />
+                app:layout_constraintTop_toBottomOf="@+id/newUserEditTextUsersActivity">
 
+                <Button
+                    android:id="@+id/addNewUserButtonUsersActivity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#4CAF50"
+                    android:text="Ajouter"
+                    android:textAllCaps="false"
+                    app:cornerRadius="10dp"
+                    android:layout_marginEnd="20dp" />
+
+                <Switch
+                    android:id="@+id/switchTempUserUsersActivity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Temporaire ?"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     </androidx.cardview.widget.CardView>
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardCalendarContainer"
+        android:layout_width="310dp"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="10dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardAddUser">
+
+        <CalendarView
+            android:id="@+id/calendarViewTempUserUsersActivity"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="#FFFFFF" />
+
+    </androidx.cardview.widget.CardView>
+
+
     <ListView
         android:id="@+id/usersListViewUsersActivity"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="392dp"
+        android:layout_height="408dp"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="16dp"
+        android:clipToPadding="false"
         android:divider="@android:color/transparent"
         android:dividerHeight="8dp"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
-        android:clipToPadding="false"
         app:layout_constraintBottom_toTopOf="@+id/backButtonUsersActivity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardAddUser"
+        app:layout_constraintVertical_bias="0.946" />
 
     <Button
         android:id="@+id/backButtonUsersActivity"
@@ -101,22 +137,4 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Switch
-        android:id="@+id/switchTempUserUsersActivity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Temporaire ?"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5" />
-
-    <CalendarView
-        android:id="@+id/calendarViewTempUserUsersActivity"
-        android:layout_width="338dp"
-        android:layout_height="337dp"
-        android:layout_marginTop="30dp"
-        android:background="#FFFFFF"
-        app:layout_constraintEnd_toStartOf="@+id/usersListViewUsersActivity"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/usersListViewUsersActivity" />
 </androidx.constraintlayout.widget.ConstraintLayout>
